@@ -38,6 +38,7 @@ func (s *session) Generate(generateFunc GenerateFunc, output string) (path strin
 	}
 
 	startDay := getSemesterStartDay(week)
+	fmt.Println("学期开始日期为", startDay.Format("2006-01-02"))
 	fmt.Println("当前为第", week, "教学周")
 	fmt.Println("计算得到本学期开始于", startDay.Format("2006-01-02"))
 	fmt.Println("官方校历 http://www.neu.edu.cn/xl/list.htm")
@@ -136,9 +137,9 @@ func New(username, password string, webVPN bool) (Generator, error) {
 	var platform neugo.Platform
 	if webVPN {
 		platform = neugo.WebVPN
-		s.currentWeekUrl = neugo.EncryptToWebVPN(defaultCurrentWeekUrl)
-		s.courseTableUrl = neugo.EncryptToWebVPN(defaultCourseTableUrl)
-		s.courseTableActionUrl = neugo.EncryptToWebVPN(defaultCourseTableActionUrl)
+		s.currentWeekUrl = neugo.EncryptURLToWebVPN(defaultCurrentWeekUrl)
+		s.courseTableUrl = neugo.EncryptURLToWebVPN(defaultCourseTableUrl)
+		s.courseTableActionUrl = neugo.EncryptURLToWebVPN(defaultCourseTableActionUrl)
 	} else {
 		platform = neugo.CAS
 		s.currentWeekUrl = defaultCurrentWeekUrl

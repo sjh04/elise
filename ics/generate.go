@@ -79,11 +79,12 @@ var classEndTimeNanhu = []string{
 }
 
 // ics文件用到的星期几简称
-var dayOfWeek = []string{"SU", "MO", "TU", "WE", "TH", "FR", "SA"}
+var dayOfWeek = []string{"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
 
 // 导出ICS格式的课程表
 func Generate(courses []*elise.Course, startDay time.Time, output string) (string, error) {
 	// 生成ics文件头
+	fmt.Println("开始日期", startDay.Format("2006-01-02"))
 	var icsData string
 	icsData = `BEGIN:VCALENDAR
 PRODID:-//nian//getMyCourses 20190522//EN
@@ -95,6 +96,7 @@ X-WR-TIMEZONE:Asia/Shanghai
 BEGIN:VTIMEZONE
 TZID:Asia/Shanghai
 X-LIC-LOCATION:Asia/Shanghai
+WKST=SU
 BEGIN:STANDARD
 TZOFFSETFROM:+0800
 TZOFFSETTO:+0800
@@ -177,7 +179,7 @@ END:VTIMEZONE` + "\n"
 		for i := 0; i < len(periods); i++ {
 			var eventData string
 			eventData = `BEGIN:VEVENT` + "\n"
-			startDate := startDay.AddDate(0, 0, (startWeek[i]-1)*7+weekDay+1)
+			startDate := startDay.AddDate(0, 0, (startWeek[i]-1)*7+(weekDay+1)%7)
 
 			if strings.Contains(course.RoomName, "浑南") {
 				eventData = eventData + `DTSTART;TZID=Asia/Shanghai:` + startDate.Format("20060102T") + ClassStartTimeHunnan[st] + "\n"
