@@ -79,7 +79,7 @@ var classEndTimeNanhu = []string{
 }
 
 // ics文件用到的星期几简称
-var dayOfWeek = []string{"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
+var dayOfWeek = []string{"SU", "MO", "TU", "WE", "TH", "FR", "SA"}
 
 // 导出ICS格式的课程表
 func Generate(courses []*elise.Course, startDay time.Time, output string) (string, error) {
