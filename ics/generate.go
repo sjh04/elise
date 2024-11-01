@@ -84,7 +84,6 @@ var dayOfWeek = []string{"MO", "TU", "WE", "TH", "FR", "SA", "SU"}
 // 导出ICS格式的课程表
 func Generate(courses []*elise.Course, startDay time.Time, output string) (string, error) {
 	// 生成ics文件头
-	fmt.Println("开始日期", startDay.Format("2006-01-02"))
 	var icsData string
 	icsData = `BEGIN:VCALENDAR
 PRODID:-//nian//getMyCourses 20190522//EN
@@ -96,7 +95,6 @@ X-WR-TIMEZONE:Asia/Shanghai
 BEGIN:VTIMEZONE
 TZID:Asia/Shanghai
 X-LIC-LOCATION:Asia/Shanghai
-WKST=SU
 BEGIN:STANDARD
 TZOFFSETFROM:+0800
 TZOFFSETTO:+0800

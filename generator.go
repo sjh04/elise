@@ -38,7 +38,6 @@ func (s *session) Generate(generateFunc GenerateFunc, output string) (path strin
 	}
 
 	startDay := getSemesterStartDay(week)
-	fmt.Println("学期开始日期为", startDay.Format("2006-01-02"))
 	fmt.Println("当前为第", week, "教学周")
 	fmt.Println("计算得到本学期开始于", startDay.Format("2006-01-02"))
 	fmt.Println("官方校历 http://www.neu.edu.cn/xl/list.htm")
